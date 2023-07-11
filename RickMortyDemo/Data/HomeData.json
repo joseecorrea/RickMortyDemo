@@ -1,0 +1,17 @@
+{
+    "title" : "Rick and Morty",
+    "description" : "Rick Sanchez is an example of the typical \"mad scientist\". He is a genius, but he is irresponsible, alcoholic, selfish, a bit depressive and with little sanity. Rick for different reasons ends up moving into his daughter Beth's house and at that moment he meets his grandson Morty; a 14 year old boy, shy and not very smart. By joining his grandson, Rick and Morty live a variety of adventures throughout the cosmos and parallel universes. And it is through so many experiences and reflections that Rick seeks that his grandson Morty does not end up like his father, Jerry, a very unsuccessful man who despite having good intentions turns out to be quite useless on many occasions and is very dependent on his wife, Beth, Rick's daughter. \n Despite being very attached, Rick and his grandson experience moments where Summer, Morty's sister, sometimes joins in the colorful adventures caused by Rick.",
+    "image" : "frontPage",
+    "trailerURL" : "https://www.youtube.com/watch?v=BFTSrbB2wII",
+    "imdbURL" : "https://www.imdb.com/title/tt2861424/?ref_=nv_sr_srsg_0_tt_7_nm_1_q_rick%2520and",
+    "imdbRating" : "9.1",
+    "categories" : [
+        "Animation",
+        "Adventure",
+        "Comedy"
+    ],
+    "creators" : [
+        "Dan Harmon",
+        "Justin Roiland"
+    ]
+}
