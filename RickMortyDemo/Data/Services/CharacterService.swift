@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum CustomError: Error {
-    case badRequest
-    case requestFailed
-    case badUrl
-}
-
 class CharacterService: Service, CharacterServiceProtocol {
     
     override init() {
