@@ -17,22 +17,22 @@ final class RickMortyDemoUtilsTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func getCharacterTest() {
+    func testGetCharacter() {
         let character = Utils.getCharacter()
         XCTAssertEqual(character.name, "Glockenspiel Morty")
     }
     
-    func getEpisodeTest() {
+    func testGetEpisode() {
         let episode = Utils.getEpisode()
         XCTAssertEqual(episode.name, "Pilot")
     }
     
-    func readJSONTest() {
+    func testReadJSON() {
         let jsonData = Utils.readLocalJSONFile(forName: Constants.FileName.homeData)
         XCTAssertNotNil(jsonData)
     }
     
-    func parseJSON() {
+    func testParseJSON() {
         guard let jsonData = Utils.readLocalJSONFile(forName: Constants.FileName.homeData) else {
             return
         }
