@@ -12,6 +12,8 @@
 		E00179E12A52F63300C13462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E00179E02A52F63300C13462 /* Assets.xcassets */; };
 		E00179E42A52F63300C13462 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E00179E32A52F63300C13462 /* Preview Assets.xcassets */; };
 		E03D02782A5DE34700E9FDEC /* Rotation3DEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03D02772A5DE34700E9FDEC /* Rotation3DEffect.swift */; };
+		E040A0082A8264DD00232784 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040A0072A8264DD00232784 /* MockURLProtocol.swift */; };
+		E040A0092A8264DD00232784 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040A0072A8264DD00232784 /* MockURLProtocol.swift */; };
 		E052AADA2A5D35230034A1E1 /* SimpleCardEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052AAD92A5D35230034A1E1 /* SimpleCardEffect.swift */; };
 		E052AADD2A5D7A3C0034A1E1 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052AADC2A5D7A3C0034A1E1 /* ImageCache.swift */; };
 		E052AADF2A5D7AC40034A1E1 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E052AADE2A5D7AC40034A1E1 /* RemoteImage.swift */; };
@@ -73,6 +75,7 @@
 		E00179E02A52F63300C13462 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E00179E32A52F63300C13462 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E03D02772A5DE34700E9FDEC /* Rotation3DEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation3DEffect.swift; sourceTree = "<group>"; };
+		E040A0072A8264DD00232784 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		E052AAD92A5D35230034A1E1 /* SimpleCardEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCardEffect.swift; sourceTree = "<group>"; };
 		E052AADC2A5D7A3C0034A1E1 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		E052AADE2A5D7AC40034A1E1 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
@@ -197,6 +200,7 @@
 			children = (
 				E061F3892A81140000479275 /* RickMortyDemoUtilsTests.swift */,
 				E061F37B2A80EEF300479275 /* RickMortyDemoServiceTests.swift */,
+				E040A0072A8264DD00232784 /* MockURLProtocol.swift */,
 			);
 			path = RickMortyDemoTests;
 			sourceTree = "<group>";
@@ -435,6 +439,7 @@
 				E052AADD2A5D7A3C0034A1E1 /* ImageCache.swift in Sources */,
 				E052AADF2A5D7AC40034A1E1 /* RemoteImage.swift in Sources */,
 				E0699B162A56DB9E00FD600A /* EpisodeServiceProtocol.swift in Sources */,
+				E040A0082A8264DD00232784 /* MockURLProtocol.swift in Sources */,
 				E0E0A3AC2A58264F00146005 /* Service.swift in Sources */,
 				E052AADA2A5D35230034A1E1 /* SimpleCardEffect.swift in Sources */,
 				E09E77EC2A558BC700865DC0 /* CharacterStatusView.swift in Sources */,
@@ -481,6 +486,7 @@
 				E061F3882A810EAF00479275 /* HomeData.swift in Sources */,
 				E061F37C2A80EEF300479275 /* RickMortyDemoServiceTests.swift in Sources */,
 				E061F38A2A81140000479275 /* RickMortyDemoUtilsTests.swift in Sources */,
+				E040A0092A8264DD00232784 /* MockURLProtocol.swift in Sources */,
 				E061F3822A80F24D00479275 /* Service.swift in Sources */,
 				E061F3842A8103E000479275 /* Constants.swift in Sources */,
 			);
