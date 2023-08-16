@@ -13,7 +13,10 @@ final class RickMortyDemoServiceTests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        service = Service()
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockURLProtocol.self]
+        let urlSession = URLSession.init(configuration: configuration)
+        service = Service(urlSession: urlSession)
     }
 
     override func tearDownWithError() throws {
@@ -29,8 +32,8 @@ final class RickMortyDemoServiceTests: XCTestCase {
         switch result {
         case .success(let request):
             XCTAssertEqual(request.url?.absoluteString, "\(urlString)?name=Test1")
-        case .failure(let failure):
-            XCTAssertEqual(failure, CustomError.badUrl)
+        case .failure(_):
+            XCTFail()
         }
     }
     
@@ -42,8 +45,32 @@ final class RickMortyDemoServiceTests: XCTestCase {
             let parseJson: HomeData = try service.parseResponse(data: jsonData)
             XCTAssertEqual(parseJson.title, "Rick and Morty")
             XCTAssertEqual(parseJson.creators?.count ?? 0, 2)
-        } catch(let customError) {
-            XCTAssertNotNil(customError as? CustomError)
+        } catch(_) {
+            XCTFail()
+        }
+    }
+    
+    func testDoRequest() async throws {
+        guard let jsonData = Utils.readLocalJSONFile(forName: Constants.FileName.homeData) else {
+            return
+        }
+        
+        MockURLProtocol.requestHandler = { request in
+            guard let url = request.url else {
+                throw CustomError.badRequest
+            }
+            
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, jsonData)
+        }
+        
+        let result: Result<HomeData,CustomError> = await service.doRequest(urlString: "https://www.google.com")
+        switch result {
+        case .success(let response):
+            XCTAssertEqual(response.title, "Rick and Morty")
+            XCTAssertEqual(response.creators?.count ?? 0, 2)
+        case .failure(_):
+            XCTFail()
         }
     }
 
