@@ -15,8 +15,12 @@ enum CustomError: Error {
 
 class Service: ServiceProtocol {
     
-    internal var sharedSession: URLSession = URLSession.shared
+    private var urlSession: URLSession
     var baseUrl = Constants.Strings.empty
+    
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
+    }
     
     func makeRequest(urlString: String, queryItems: [String : String]? = nil) -> Result<URLRequest, CustomError> {
         guard var urlComponents = URLComponents(string: urlString) else { return .failure(.badUrl) }
@@ -36,7 +40,7 @@ class Service: ServiceProtocol {
         switch result {
         case .success(let request):
             do {
-                let (data, response) = try await sharedSession.data(for: request)
+                let (data, response) = try await urlSession.data(for: request)
                 if (response as? HTTPURLResponse)?.statusCode == 200 {
                     return .success(try parseResponse(data: data)) 
                 } else {

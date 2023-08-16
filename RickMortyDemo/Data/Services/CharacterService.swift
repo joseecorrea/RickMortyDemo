@@ -9,8 +9,8 @@ import Foundation
 
 class CharacterService: Service, CharacterServiceProtocol {
     
-    override init() {
-        super.init()
+    override init(urlSession: URLSession = URLSession.shared) {
+        super.init(urlSession: urlSession)
         self.baseUrl = Constants.Urls.character
     }
     

@@ -9,8 +9,8 @@ import Foundation
 
 class EpisodeService: Service, EpisodeServiceProtocol {
 
-    override init() {
-        super.init()
+    override init(urlSession: URLSession = URLSession.shared) {
+        super.init(urlSession: urlSession)
         self.baseUrl = Constants.Urls.episodes
     }
     
