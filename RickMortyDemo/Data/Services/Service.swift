@@ -11,19 +11,32 @@ enum CustomError: Error {
     case badRequest
     case requestFailed
     case badUrl
+    case unknownError
+    
+    init(error: Error) {
+        if let customError = error as? CustomError {
+            self = customError
+        } else {
+            self = .unknownError
+        }
+    }
 }
 
 class Service: ServiceProtocol {
     
-    private var urlSession: URLSession
-    var baseUrl = Constants.Strings.empty
+    internal var urlSession: URLSession
+    internal var baseUrl: String
     
-    init(urlSession: URLSession = URLSession.shared) {
+    init(urlSession: URLSession = URLSession.shared, baseUrl: String = Constants.Strings.empty) {
         self.urlSession = urlSession
+        self.baseUrl = baseUrl
     }
     
-    func makeRequest(urlString: String, queryItems: [String : String]? = nil) -> Result<URLRequest, CustomError> {
-        guard var urlComponents = URLComponents(string: urlString) else { return .failure(.badUrl) }
+    func makeRequest(path: String? = nil, queryItems: [String : String]? = nil) -> Result<URLRequest, CustomError> {
+        guard var urlComponents = URLComponents(string: baseUrl) else { return .failure(.badUrl) }
+        if let path {
+            urlComponents.path = path
+        }
         if let queryItems {
             urlComponents.queryItems = queryItems.compactMap { URLQueryItem(name: $0.key, value: $0.value) }
         }
@@ -35,8 +48,8 @@ class Service: ServiceProtocol {
         return try JSONDecoder().decode(T.self, from: data)
     }
     
-    func doRequest<T>(urlString: String, queryItems: [String : String]? = nil) async -> Result<T, CustomError> where T : Codable {
-        let result: Result<URLRequest, CustomError> = makeRequest(urlString: urlString, queryItems: queryItems)
+    func doRequest<T>(path: String? = nil, queryItems: [String : String]? = nil) async -> Result<T, CustomError> where T : Codable {
+        let result: Result<URLRequest, CustomError> = makeRequest(path: path, queryItems: queryItems)
         switch result {
         case .success(let request):
             do {
@@ -44,21 +57,14 @@ class Service: ServiceProtocol {
                 if (response as? HTTPURLResponse)?.statusCode == 200 {
                     return .success(try parseResponse(data: data)) 
                 } else {
-                    return .failure(.requestFailed)
+                    return .failure(.badRequest)
                 }
             } catch(let customError) {
-                if let customError = customError as? CustomError {
-                    return .failure(customError)
-                }
-                return .failure(.badRequest)
+                return .failure(CustomError(error: customError))
             }
         case .failure(let failure):
             return .failure(failure)
         }
-    }
-    
-    func setBaseUrl(url: String) {
-        self.baseUrl = url
     }
     
 }

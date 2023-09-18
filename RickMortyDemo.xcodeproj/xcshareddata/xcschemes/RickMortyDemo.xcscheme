@@ -26,14 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E00179E82A52F63400C13462"
+               BlueprintIdentifier = "E061F3782A80EEF300479275"
                BuildableName = "RickMortyDemoTests.xctest"
                BlueprintName = "RickMortyDemoTests"
                ReferencedContainer = "container:RickMortyDemo.xcodeproj">

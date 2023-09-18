@@ -9,23 +9,22 @@ import Foundation
 
 class CharacterService: Service, CharacterServiceProtocol {
     
-    override init(urlSession: URLSession = URLSession.shared) {
-        super.init(urlSession: urlSession)
-        self.baseUrl = Constants.Urls.character
+    override init(urlSession: URLSession = URLSession.shared, baseUrl: String = Constants.Urls.character) {
+        super.init(urlSession: urlSession, baseUrl: baseUrl)
     }
     
     private var nextPage: String?
     private var previusPage: String?
     
     func getPage() async -> Result<Characters, CustomError> {
-        let string = previusPage == nil ? (nextPage != nil ? nextPage ?? Constants.OptionalUnwrap.basic : baseUrl) : nextPage ?? Constants.OptionalUnwrap.basic
-        let result: Result<CharacterList,CustomError> = await doRequest(urlString: string)
+        if let nextPage { baseUrl = nextPage }
+        let result: Result<CharacterList,CustomError> = await doRequest()
         return evaluateResult(result: result)
     }
     
     func searchCharacter(byName name: String) async -> Result<Characters, CustomError> {
-        let string = previusPage == nil ? (nextPage != nil ? nextPage ?? Constants.OptionalUnwrap.basic : baseUrl) : nextPage ?? Constants.OptionalUnwrap.basic
-        let result: Result<CharacterList,CustomError> = await doRequest(urlString: string, queryItems: nextPage != nil ? nil : [Constants.Strings.name:name])
+        if let nextPage { baseUrl = nextPage }
+        let result: Result<CharacterList,CustomError> = await doRequest(queryItems: nextPage != nil ? nil : [Constants.Strings.name:name])
         return evaluateResult(result: result)
     }
     

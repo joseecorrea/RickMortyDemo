@@ -8,6 +8,7 @@
 import Foundation
 
 protocol ServiceProtocol {
+    var urlSession: URLSession { get }
     var baseUrl: String { get }
-    func doRequest<T: Codable>(urlString: String, queryItems: [String:String]?) async -> Result<T, CustomError>
+    func doRequest<T: Codable>(path: String?, queryItems: [String:String]?) async -> Result<T, CustomError>
 }
